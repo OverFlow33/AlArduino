@@ -1,0 +1,42 @@
+<div xmlns:th="http://www.w3.org/1999/xhtml" th:fragment="nav" th:remove="tag">
+    <nav id="sidebar">
+        <div class="sidebar-header text-center">
+            <h3>Gestion de systeme luminosité</h3>
+        </div>
+
+        <ul class="list-unstyled components">
+            <p class="text-center">Bonjour ADMIN</p>
+            <li class="">
+                <a href="#info" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">
+                    Info
+                </a>
+                <ul class="collapse list-unstyled" id="info">
+                    <li>
+                        <a href="/">Index</a>
+                    </li>
+                    <li>
+                        <a href="/arduino/log">Log</a>
+                    </li>
+                </ul>
+            </li>
+            <li>
+                <a href="#commands" data-toggle="collapse" aria-expanded="false"
+                   class="dropdown-toggle">Commands</a>
+                <ul class="collapse list-unstyled" id="commands">
+                    <li>
+                        <a href="/arduino/state">State</a>
+                    </li>
+                    <li>
+                        <a href="/admin/arduino/mode">Mode</a>
+                    </li>
+                </ul>
+            </li>
+        </ul>
+
+        <ul class="list-unstyled CTAs">
+            <li>
+                <a href="/logout" class="btn btn-default btn-block">Logout</a>
+            </li>
+        </ul>
+    </nav>
+</div>
