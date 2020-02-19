@@ -77,9 +77,9 @@ public class MvcController {
     @GetMapping("/arduino/log")
     public ModelAndView log(){
         ModelAndView modelAndView = new ModelAndView();
-        Pageable sortedByPriceDescNameAsc = PageRequest.of(0, 5, Sort.by("id").descending());
-        modelAndView.addObject("logs", logRepository.findAll(sortedByPriceDescNameAsc));
+        modelAndView.addObject("logs", logRepository.findAll());
         modelAndView.setViewName("log");
         return modelAndView;
     }
+
 }
