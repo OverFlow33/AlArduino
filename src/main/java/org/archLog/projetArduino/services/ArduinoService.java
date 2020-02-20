@@ -9,8 +9,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.GetMapping;
 
-import java.util.HashMap;
-import java.util.Map;
+import java.time.LocalDate;
+import java.util.*;
 
 @Service
 public class ArduinoService {
@@ -61,4 +61,22 @@ public class ArduinoService {
         return map;
         //return "{message:'"+m+"', mode: '"+arduino.isManual()+"'}";
     }
+    public ArrayList<Integer> countByCreatedBetween(){
+        ArrayList<Integer> result = new ArrayList<Integer>();
+        Date debut ;
+        Date fin ;
+        for (int i = 0; i < 24; i++) {
+            debut = new Date(LocalDate.now().toString());
+            debut.setMinutes(00);
+            debut.setSeconds(00);
+            debut.setHours(i);
+            fin = new Date(LocalDate.now().toString());
+            fin.setMinutes(00);
+            fin.setSeconds(00);
+            fin.setHours(i+1);
+            result.add(logRepository.findByCreatedBetween(debut,fin).size());
+        }
+        return result;
+    }
+
 }

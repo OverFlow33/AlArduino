@@ -1,6 +1,6 @@
 <!DOCTYPE html>
-<html>
-  <head>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
@@ -41,7 +41,9 @@
       crossorigin="anonymous"
     ></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
-  </head>
+  <div th:replace="segments/styles :: styles"></div>
+
+</head>
 
   <body>
     <div class="wrapper">
@@ -236,32 +238,7 @@
                 label: "Statistiques",
                 backgroundColor: "rgb(255, 99, 132)",
                 borderColor: "rgb(255, 99, 132)",
-                data: [
-                  0,
-                  2,
-                  5,
-                  2,
-                  7,
-                  18,
-                  31,
-                  15,
-                  2,
-                  1,
-                  0,
-                  0,
-                  1,
-                  1,
-                  0,
-                  0,
-                  0,
-                  5,
-                  8,
-                  20,
-                  25,
-                  19,
-                  12,
-                  2
-                ]
+                data: [[${data}]]
               }
             ]
           },

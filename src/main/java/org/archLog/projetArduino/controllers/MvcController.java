@@ -3,6 +3,7 @@ package org.archLog.projetArduino.controllers;
 import org.archLog.projetArduino.models.User;
 import org.archLog.projetArduino.repositories.ArduinoRepository;
 import org.archLog.projetArduino.repositories.LogRepository;
+import org.archLog.projetArduino.services.ArduinoService;
 import org.archLog.projetArduino.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.PageRequest;
@@ -16,6 +17,9 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.validation.Valid;
+import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
 
 @Controller
 public class MvcController {
@@ -26,6 +30,9 @@ public class MvcController {
     ArduinoRepository arduinoRepository;
     @Autowired
     LogRepository logRepository;
+
+    @Autowired
+    ArduinoService arduinoService;
 
     @RequestMapping(value="/registration", method = RequestMethod.GET)
     public ModelAndView registration(){
@@ -79,6 +86,29 @@ public class MvcController {
         ModelAndView modelAndView = new ModelAndView();
         modelAndView.addObject("logs", logRepository.findAll());
         modelAndView.setViewName("log");
+        return modelAndView;
+    }
+    @GetMapping("/arduino/charts")
+    public  ModelAndView charts(){
+        ModelAndView modelAndView = new ModelAndView();
+        modelAndView.setViewName("testchart");
+        ArrayList<Integer> result = new ArrayList<>();
+        Date debut;
+        Date fin ;
+        Calendar calendar = Calendar.getInstance();
+        for (int i = 0; i < 24; i++) {
+            debut = calendar.getTime();
+            debut.setMinutes(00);
+            debut.setSeconds(00);
+            debut.setHours(i);
+            fin = calendar.getTime();
+            fin.setMinutes(00);
+            fin.setSeconds(00);
+            fin.setHours(i+1);
+            result.add(logRepository.findByCreatedBetween(debut,fin).size());
+        }
+        modelAndView.addObject("data", result);
+
         return modelAndView;
     }
 
