@@ -62,15 +62,16 @@ public class ArduinoService {
         //return "{message:'"+m+"', mode: '"+arduino.isManual()+"'}";
     }
     public ArrayList<Integer> countByCreatedBetween(){
-        ArrayList<Integer> result = new ArrayList<Integer>();
-        Date debut ;
+        ArrayList<Integer> result = new ArrayList<>();
+        Date debut;
         Date fin ;
+        Calendar calendar = Calendar.getInstance();
         for (int i = 0; i < 24; i++) {
-            debut = new Date(LocalDate.now().toString());
+            debut = calendar.getTime();
             debut.setMinutes(00);
             debut.setSeconds(00);
             debut.setHours(i);
-            fin = new Date(LocalDate.now().toString());
+            fin = calendar.getTime();
             fin.setMinutes(00);
             fin.setSeconds(00);
             fin.setHours(i+1);

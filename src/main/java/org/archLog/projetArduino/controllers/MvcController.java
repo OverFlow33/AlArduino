@@ -92,21 +92,7 @@ public class MvcController {
     public  ModelAndView charts(){
         ModelAndView modelAndView = new ModelAndView();
         modelAndView.setViewName("testchart");
-        ArrayList<Integer> result = new ArrayList<>();
-        Date debut;
-        Date fin ;
-        Calendar calendar = Calendar.getInstance();
-        for (int i = 0; i < 24; i++) {
-            debut = calendar.getTime();
-            debut.setMinutes(00);
-            debut.setSeconds(00);
-            debut.setHours(i);
-            fin = calendar.getTime();
-            fin.setMinutes(00);
-            fin.setSeconds(00);
-            fin.setHours(i+1);
-            result.add(logRepository.findByCreatedBetween(debut,fin).size());
-        }
+        ArrayList<Integer> result = arduinoService.countByCreatedBetween();
         modelAndView.addObject("data", result);
 
         return modelAndView;
